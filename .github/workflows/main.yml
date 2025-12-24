@@ -1,0 +1,25 @@
+name: Robot Ambatron Beraksi
+
+on:
+  push:
+    branches: [ "main" ] # Robot jalan setiap kamu 'push' ke branch main
+
+jobs:
+  bungkus-dan-kirim:
+    runs-on: ubuntu-latest # Robotnya pakai komputer Linux punya GitHub
+    
+    steps:
+    - name: Ambil File dari Mesin Waktu
+      uses: actions/checkout@v3
+
+    - name: Login ke Gudang Docker
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.allif26 }}
+        password: ${{ secrets.fajar2667 }}
+
+    - name: Masukkan ke Kotak & Kirim!
+      uses: docker/build-push-action@v4
+      with:
+        push: true
+        tags: allif26/sinaudocker:latest
